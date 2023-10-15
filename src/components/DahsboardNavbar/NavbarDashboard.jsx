@@ -13,6 +13,7 @@ const NavbarDashboard = () => {
     const pathName = location.pathname.split("/")[1];
     if (pathName === "homepage") return "Homepage";
     if (pathName === "surat") return "Surat Masuk";
+    if (pathName === "admin") return "Admin";
   }, [location]);
 
   // ============ HANDLE LOG OUT ============

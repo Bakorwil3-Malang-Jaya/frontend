@@ -21,7 +21,7 @@ const SuratMasukList = ({ search }) => {
 
   // Pagination
   const [pageNumber, setPageNumber] = useState(0);
-  const SuratMasukPerPage = 10;
+  const SuratMasukPerPage = 3;
   const pageVisited = pageNumber * SuratMasukPerPage;
   const changePage = ({ selected }) => {
     setPageNumber(selected);
@@ -31,8 +31,10 @@ const SuratMasukList = ({ search }) => {
   useEffect(() => {
     getSuratMasuk().then((data) => {
       setDataSuratMasuk(data);
-      setDataTahunFilter(data);
-      setTahunFromDB([...new Set(data.map((th) => th.tahun))]);
+      if (Array.isArray(data)) {
+        setDataTahunFilter(data);
+        setTahunFromDB([...new Set(data.map((th) => th.tahun))]);
+      }
     });
   }, []);
 
@@ -79,7 +81,9 @@ const SuratMasukList = ({ search }) => {
 
   // =========== ADD BERITA ===========
   const handleAddSuratMasuk = (newSuratMasuk) => {
-    setDataSuratMasuk([...dataSuratMasuk, newSuratMasuk]);
+    if (Array.isArray(dataSuratMasuk)) {
+      setDataSuratMasuk([...dataSuratMasuk, newSuratMasuk]);
+    }
   };
 
   const [balik, setBalik] = useState(false);
@@ -87,16 +91,18 @@ const SuratMasukList = ({ search }) => {
     setBalik(!balik);
   };
 
-  const dataToMap = balik
-    ? [...dataTahunFilter]
-        .slice(0, dataTahunFilter.length)
-        .slice(pageVisited, pageVisited + SuratMasukPerPage)
-        .filter((s) => (search === "" ? s : s.nomor_surat.includes(search)))
-        .reverse()
-    : [...dataTahunFilter]
-        .slice(0, dataTahunFilter.length)
-        .slice(pageVisited, pageVisited + SuratMasukPerPage)
-        .filter((s) => (search === "" ? s : s.nomor_surat.includes(search)));
+  const dataToMap = Array.isArray(dataTahunFilter)
+    ? balik
+      ? [...dataTahunFilter]
+          .slice(0, dataTahunFilter.length)
+          .slice(pageVisited, pageVisited + SuratMasukPerPage)
+          .filter((s) => (search === "" ? s : s.nomor_surat.includes(search)))
+          .reverse()
+      : [...dataTahunFilter]
+          .slice(0, dataTahunFilter.length)
+          .slice(pageVisited, pageVisited + SuratMasukPerPage)
+          .filter((s) => (search === "" ? s : s.nomor_surat.includes(search)))
+    : [];
 
   return (
     <>
@@ -134,7 +140,7 @@ const SuratMasukList = ({ search }) => {
 
             {/* ==================== TABEL BODY ==================== */}
             <tbody className="text-center">
-              {dataToMap.map((surat) => (
+              {dataToMap.map((surat, index) => (
                 <tr key={surat.id}>
                   {pageVisited + surat.nomor_agenda}
 
@@ -183,8 +189,7 @@ const SuratMasukList = ({ search }) => {
                         window.my_modal_confirmDeleteBerita.showModal();
                         setPickIdDelete(surat.id);
                       }}
-                      className="btn-secondary font-medium rounded-lg text-sm px-5 py-2.5 text-center text-white"
-                    >
+                      className="btn-secondary font-medium rounded-lg text-sm px-5 py-2.5 text-center text-white">
                       <FaTrash />
                     </button>
 
@@ -208,8 +213,7 @@ const SuratMasukList = ({ search }) => {
                         });
                         window.my_modal_editSuratMasuk.showModal();
                       }}
-                      className="btn-primary font-medium rounded-lg text-sm px-5 py-2.5 text-center text-white"
-                    >
+                      className="btn-primary font-medium rounded-lg text-sm px-5 py-2.5 text-center text-white">
                       <FaPencil />
                     </button>
 
@@ -234,8 +238,7 @@ const SuratMasukList = ({ search }) => {
                         });
                         window.my_modal_getSuratMasuk.showModal();
                       }}
-                      className="btn-accent font-medium rounded-lg text-sm px-5 py-2.5 text-center text-white"
-                    >
+                      className="btn-accent font-medium rounded-lg text-sm px-5 py-2.5 text-center text-white">
                       <FaExclamation />
                     </button>
                   </td>

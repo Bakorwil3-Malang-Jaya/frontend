@@ -10,7 +10,6 @@ const SuratMasukPage = () => {
     <div className="p-3 grid-cols">
       {/* <HeaderSuratMasuk /> */}
       <Search setSearch={setSearch} />
-      
       <SuratMasukList search={search} />
     </div>
   );

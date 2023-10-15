@@ -1,12 +1,14 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import NavigationLayout from "./components/NavigationLayout/NavigationLayout";
+import NavigationDashboardAdmin from "./components/NavigationLayout/NavigationDashboardAdmin";
 import { ToastContainer } from "react-toastify";
-import PrivateRoute from "./PrivateRoute"
+import PrivateRoute from "./PrivateRoute";
 import "react-toastify/dist/ReactToastify.css";
 import Login from "./components/login/Login";
-import Pengumuman from "./pages/Homepage";
-import Berita from "./pages/SuratMasukPage";
+import Homepage from "./pages/Homepage";
+import SuratMasukPage from "./pages/SuratMasukPage";
+import Admin from "./pages/Admin";
 import NotFound from "./pages/NotFound";
 
 function App() {
@@ -16,15 +18,25 @@ function App() {
         <ToastContainer autoClose={3000} />
         <Routes>
           <Route path="/" element={<Login />} />
+          {/* ====== USER ====== */}
           <Route
             element={
               <PrivateRoute>
                 <NavigationLayout />
               </PrivateRoute>
             }>
-            <Route path="/homepage" element={<Pengumuman />} />
+            <Route path="/homepage" element={<Homepage />} />
             <Route path="*" element={<NotFound />} />
-            <Route path="/surat" element={<Berita />} />
+            <Route path="/surat" element={<SuratMasukPage />} />
+          </Route>
+          {/* ====== ADMIN ====== */}
+          <Route
+            element={
+              <PrivateRoute>
+                <NavigationDashboardAdmin />
+              </PrivateRoute>
+            }>
+            <Route path="/admin" element={<Admin />} />
           </Route>
         </Routes>
       </BrowserRouter>

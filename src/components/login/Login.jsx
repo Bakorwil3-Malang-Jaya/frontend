@@ -8,15 +8,16 @@ import jwtDecode from "jwt-decode";
 import { toast } from "react-toastify";
 
 const Login = () => {
+  const c = console.log
   const [showPassword, setShowPassword] = useState(false);
   const [isLoginError, setIsLoginError] = useState(false);
   const navigate = useNavigate();
 
   const handleLogin = async (data) => {
-    const { email, password } = data;
+    const { name, password } = data;
     try {
       const res = await axios.post("http://localhost:4000/login", {
-        email,
+        name,
         password,
       });
 
@@ -26,13 +27,22 @@ const Login = () => {
         1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15,
       ];
 
-      if (allowedUserIDs.includes(user.userid)) {
+      if (allowedUserIDs.includes(user.userid) && user.role === 'admin') {
         toast.success("Login Berhasil");
         sessionStorage.setItem("access_token", token);
         sessionStorage.setItem("email", user.email);
         sessionStorage.setItem("name", user.name);
+        c(user.role)
+        navigate("/admin");
+      } else if (allowedUserIDs.includes(user.userid) && user.role === 'user') {
+        toast.success("Login Berhasil");
+        sessionStorage.setItem("access_token", token);
+        sessionStorage.setItem("email", user.email);
+        sessionStorage.setItem("name", user.name);
+        c(user.role)
         navigate("/homepage");
-      } else {
+      }
+      else{
         toast.error("Gagal Login !");
       }
     } catch (error) {
@@ -42,13 +52,13 @@ const Login = () => {
 
   const formik = useFormik({
     initialValues: {
-      email: "",
+      name: "",
       password: "",
     },
     validationSchema: Yup.object().shape({
-      email: Yup.string()
-        .email("Please enter a valid email address")
-        .required("Please enter an email address"),
+      name: Yup.string()
+        .required("Please enter a valid name")
+        .label("Name"),
       password: Yup.string().required("Please enter your password"),
     }),
     onSubmit: (values) => {
@@ -67,32 +77,32 @@ const Login = () => {
                 <div className="relative">
                   <input
                     className={`w-full sm:w-[400px] h-14 p-4 rounded block border border-gray-400 focus:outline-[#74777F] placeholder-transparent peer ${
-                      formik.errors.email &&
-                      formik.touched.email &&
+                      formik.errors.name &&
+                      formik.touched.name &&
                       "border-red-500 focus:outline-red-500"
                     }`}
-                    id="email"
-                    type="email"
-                    placeholder="Email"
-                    name="email"
-                    value={formik.values.email}
+                    id="name"
+                    type="name"
+                    placeholder="name"
+                    name="name"
+                    value={formik.values.name}
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                   />
 
                   <label
-                    htmlFor="email"
+                    htmlFor="name"
                     className={`absolute px-1 transition-all bg-white text-sm text-gray-400 left-3 -top-3 peer-placeholder-shown:text-base peer-placeholder-shown:top-4 peer-placeholder-shown:text-gray-400 peer-focus:text-sm peer-focus:-top-3 peer-focus:text-slate-600  ${
-                      formik.errors.email &&
-                      formik.touched.email &&
+                      formik.errors.name &&
+                      formik.touched.name &&
                       "text-red-500 peer-focus:text-red-500 peer-placeholder-shown:text-red-500"
                     }`}>
-                    Email
+                    Name
                   </label>
                 </div>
-                {formik.errors.email && formik.touched.email && (
+                {formik.errors.name && formik.touched.name && (
                   <p className="mt-1 text-red-500 max-[640px]:text-sm">
-                    {formik.errors.email}
+                    {formik.errors.name}
                   </p>
                 )}
               </div>

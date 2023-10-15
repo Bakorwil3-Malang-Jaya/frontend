@@ -3,7 +3,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import logo1 from "../../assets/img/logo1.png";
-import { FaHouseChimney, FaRegEnvelope } from "react-icons/fa6";
+import { FaHouseUser,FaHouseChimney, FaRegEnvelope } from "react-icons/fa6";
 
 const Sidebar = () => {
   return (

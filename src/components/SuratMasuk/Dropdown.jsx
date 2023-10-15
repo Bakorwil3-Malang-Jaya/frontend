@@ -18,8 +18,8 @@ const Dropdown = ({ pickTahun, semua, tahunFromDB, tahunFilter }) => {
               semua
             </a>
           </li>
-          {tahunFromDB.map((th) => (
-            <li key={th.id}>
+          {tahunFromDB.map((th,index) => (
+            <li key={index}>
               <a
                 onClick={() => {
                   tahunFilter(th);

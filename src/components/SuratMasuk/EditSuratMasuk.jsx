@@ -343,7 +343,7 @@ const EditSuratMasuk = ({ handleEditSuratMasuk, pickOfSuratMasukEdit }) => {
                   id="TU"
                   name="TU"
                 />
-                <label for="TU" className="ml-1">
+                <label htmlFor="TU" className="ml-1">
                   TU
                 </label>
                 <input
@@ -354,7 +354,7 @@ const EditSuratMasuk = ({ handleEditSuratMasuk, pickOfSuratMasukEdit }) => {
                   id="penyusunan program"
                   name="Penyusunan Program"
                 />
-                <label for="Penyusunan Program" className="ml-1">
+                <label htmlFor="Penyusunan Program" className="ml-1">
                   Penyusunan Program
                 </label>
                 <br />
@@ -365,7 +365,7 @@ const EditSuratMasuk = ({ handleEditSuratMasuk, pickOfSuratMasukEdit }) => {
                   checked={ditujukan?.includes("Keuangan")}
                   name="Keuangan"
                 />
-                <label for="Keuangan" className="ml-1">
+                <label htmlFor="Keuangan" className="ml-1">
                   Keuangan
                 </label>
                 <input
@@ -375,7 +375,7 @@ const EditSuratMasuk = ({ handleEditSuratMasuk, pickOfSuratMasukEdit }) => {
                   checked={ditujukan?.includes("Pembangunan Ekonomi")}
                   name="Pembangunan Ekonomi"
                 />
-                <label for="Pembangunan Ekonomi" className="ml-1">
+                <label htmlFor="Pembangunan Ekonomi" className="ml-1">
                   Pembangunan Ekonomi
                 </label>
                 <br />
@@ -386,7 +386,7 @@ const EditSuratMasuk = ({ handleEditSuratMasuk, pickOfSuratMasukEdit }) => {
                   checked={ditujukan?.includes("Kemasyarakatan")}
                   name="Kemasyarakatan"
                 />
-                <label for="Kemasyarakatan" className="ml-1">
+                <label htmlFor="Kemasyarakatan" className="ml-1">
                   Kemasyarakatan
                 </label>
                 <input
@@ -396,7 +396,7 @@ const EditSuratMasuk = ({ handleEditSuratMasuk, pickOfSuratMasukEdit }) => {
                   checked={ditujukan?.includes("Sarana Prasarana")}
                   name="Sarana Prasarana"
                 />
-                <label for="Sarana Prasarana" className="ml-1">
+                <label htmlFor="Sarana Prasarana" className="ml-1">
                   Sarana Prasarana
                 </label>
                 <br />
@@ -407,7 +407,7 @@ const EditSuratMasuk = ({ handleEditSuratMasuk, pickOfSuratMasukEdit }) => {
                   checked={ditujukan?.includes("Pemerintahan")}
                   name="Pemerintahan"
                 />
-                <label for="Pemerintahan" className="ml-1">
+                <label htmlFor="Pemerintahan" className="ml-1">
                   Pemerintahan
                 </label>
                 <input
@@ -417,7 +417,7 @@ const EditSuratMasuk = ({ handleEditSuratMasuk, pickOfSuratMasukEdit }) => {
                   checked={ditujukan?.includes("Semua Bidang")}
                   name="Semua Bidang"
                 />
-                <label for="Semua Bidang" className="ml-1">
+                <label htmlFor="Semua Bidang" className="ml-1">
                   Semua Bidang
                 </label>
               </div>
@@ -436,7 +436,7 @@ const EditSuratMasuk = ({ handleEditSuratMasuk, pickOfSuratMasukEdit }) => {
                   id="AE"
                   name="AE"
                 />
-                <label for="AE" className="ml-1">
+                <label htmlFor="AE" className="ml-1">
                   AE
                 </label>
                 <input
@@ -447,7 +447,7 @@ const EditSuratMasuk = ({ handleEditSuratMasuk, pickOfSuratMasukEdit }) => {
                   id="TU"
                   name="TU"
                 />
-                <label for="TU" className="ml-1">
+                <label htmlFor="TU" className="ml-1">
                   TU
                 </label>
                 <input
@@ -458,7 +458,7 @@ const EditSuratMasuk = ({ handleEditSuratMasuk, pickOfSuratMasukEdit }) => {
                   id="SEKBAN"
                   name="SEKBAN"
                 />
-                <label for="SEKBAN" className="ml-1">
+                <label htmlFor="SEKBAN" className="ml-1">
                   SEKBAN
                 </label>
                 <input
@@ -469,7 +469,7 @@ const EditSuratMasuk = ({ handleEditSuratMasuk, pickOfSuratMasukEdit }) => {
                   id="KABAN"
                   name="KABAN"
                 />
-                <label for="KABAN" className="ml-1">
+                <label htmlFor="KABAN" className="ml-1">
                   KABAN
                 </label>
               </div>

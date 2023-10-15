@@ -51,7 +51,7 @@ export const addDataSuratMasuk = async (
       tahun: values.tahun,
       fileSurat: values.fileSurat,
     });
-    notifyAddData("Data Berita berhasil ditambahkan!");
+    notifyAddData("Data Surat berhasil ditambahkan!");
     handleCloseModal();
     formik.resetForm();
     window.location.reload();

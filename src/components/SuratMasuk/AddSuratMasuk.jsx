@@ -4,6 +4,8 @@ import * as Yup from "yup";
 import { toast } from "react-toastify";
 import { addDataSuratMasuk } from "./apiSuratMasuk";
 
+const c = console.log;
+
 // ============== VALIDATION KOLOM ==============
 const Schema = Yup.object({
   nomor_agenda: Yup.string().required(),
@@ -60,6 +62,7 @@ const AddSuratMasuk = ({ handleAddSuratMasuk }) => {
     validationSchema: Schema,
 
     onSubmit: async (values) => {
+      c(values);
       const notifyAddData = (message) => toast.success(message);
       formik.values.posisi = posisi;
       formik.values.ditujukan = ditujukan;
@@ -95,12 +98,10 @@ const AddSuratMasuk = ({ handleAddSuratMasuk }) => {
           data-testid="form"
           className=" bg-white overflow-y-scroll  px-6 py-3 relative min-w-[600px] max-h-screen max-w-3xl rounded-md z-10"
           name="form"
-          onSubmit={formik.handleSubmit}
-        >
+          onSubmit={formik.handleSubmit}>
           <form
             method="dialog"
-            className="modal-box shadow-none right-0  absolute w-full bg-transparent mx-auto"
-          >
+            className="modal-box shadow-none right-0  absolute w-full bg-transparent mx-auto">
             <button className="btn btn-sm btn-circle btn-ghost absolute right-0 top-2">
               ✕
             </button>
@@ -131,7 +132,7 @@ const AddSuratMasuk = ({ handleAddSuratMasuk }) => {
               />
             </div>
           </div>
-          
+
           {/* ==================== TGL DITERIMA & SURAT ==================== */}
           <div className="grid grid-cols-2 mb-3 gap-2">
             {/* ==================== TGL DITERIMA ==================== */}
@@ -141,7 +142,7 @@ const AddSuratMasuk = ({ handleAddSuratMasuk }) => {
               </label>
               {formik.errors.tgl_diterima && formik.touched.tgl_diterima && (
                 <p className="mt-1 text-red-500 max-[640px]:text-sm">
-                    {formik.errors.tgl_diterima}
+                  {formik.errors.tgl_diterima}
                 </p>
               )}
               <input
@@ -336,7 +337,7 @@ const AddSuratMasuk = ({ handleAddSuratMasuk }) => {
                   name="TU"
                   value="TU"
                 />
-                <label for="TU" className="ml-1">
+                <label htmlFor="TU" className="ml-1">
                   TU
                 </label>
                 <input
@@ -348,7 +349,7 @@ const AddSuratMasuk = ({ handleAddSuratMasuk }) => {
                   name="Penyusunan Program"
                   value="Penyusunan Program"
                 />
-                <label for="Penyusunan Program" className="ml-1">
+                <label htmlFor="Penyusunan Program" className="ml-1">
                   Penyusunan Program
                 </label>
                 <br />
@@ -360,7 +361,7 @@ const AddSuratMasuk = ({ handleAddSuratMasuk }) => {
                   name="Keuangan"
                   value="Keuangan"
                 />
-                <label for="Keuangan" className="ml-1">
+                <label htmlFor="Keuangan" className="ml-1">
                   Keuangan
                 </label>
                 <input
@@ -371,7 +372,7 @@ const AddSuratMasuk = ({ handleAddSuratMasuk }) => {
                   name="Pembangunan Ekonomi"
                   value="Pembangunan Ekonomi"
                 />
-                <label for="Pembangunan Ekonomi" className="ml-1">
+                <label htmlFor="Pembangunan Ekonomi" className="ml-1">
                   Pembangunan Ekonomi
                 </label>
                 <br />
@@ -383,7 +384,7 @@ const AddSuratMasuk = ({ handleAddSuratMasuk }) => {
                   name="Kemasyarakatan"
                   value="Kemasyarakatan"
                 />
-                <label for="Kemasyarakatan" className="ml-1">
+                <label htmlFor="Kemasyarakatan" className="ml-1">
                   Kemasyarakatan
                 </label>
                 <input
@@ -394,7 +395,7 @@ const AddSuratMasuk = ({ handleAddSuratMasuk }) => {
                   name="Sarana Prasarana"
                   value="Sarana Prasarana"
                 />
-                <label for="Sarana Prasarana" className="ml-1">
+                <label htmlFor="Sarana Prasarana" className="ml-1">
                   Sarana Prasarana
                 </label>
                 <br />
@@ -406,7 +407,7 @@ const AddSuratMasuk = ({ handleAddSuratMasuk }) => {
                   name="Pemerintahan"
                   value="Pemerintahan"
                 />
-                <label for="Pemerintahan" className="ml-1">
+                <label htmlFor="Pemerintahan" className="ml-1">
                   Pemerintahan
                 </label>
                 <input
@@ -417,7 +418,7 @@ const AddSuratMasuk = ({ handleAddSuratMasuk }) => {
                   name="Semua Bidang"
                   value="Semua Bidang"
                 />
-                <label for="Semua Bidang" className="ml-1">
+                <label htmlFor="Semua Bidang" className="ml-1">
                   Semua Bidang
                 </label>
               </div>
@@ -438,7 +439,7 @@ const AddSuratMasuk = ({ handleAddSuratMasuk }) => {
                   name="AE"
                   value="AE"
                 />
-                <label for="AE" className="ml-1">
+                <label htmlFor="AE" className="ml-1">
                   AE
                 </label>
                 <input
@@ -450,7 +451,7 @@ const AddSuratMasuk = ({ handleAddSuratMasuk }) => {
                   name="TU"
                   value="TU"
                 />
-                <label for="TU" className="ml-1">
+                <label htmlFor="TU" className="ml-1">
                   TU
                 </label>
                 <input
@@ -462,7 +463,7 @@ const AddSuratMasuk = ({ handleAddSuratMasuk }) => {
                   name="SEKBAN"
                   value="SEKBAN"
                 />
-                <label for="SEKBAN" className="ml-1">
+                <label htmlFor="SEKBAN" className="ml-1">
                   SEKBAN
                 </label>
                 <input
@@ -474,7 +475,7 @@ const AddSuratMasuk = ({ handleAddSuratMasuk }) => {
                   name="KABAN"
                   value="KABAN"
                 />
-                <label for="KABAN" className="ml-1">
+                <label htmlFor="KABAN" className="ml-1">
                   KABAN
                 </label>
               </div>
@@ -482,8 +483,7 @@ const AddSuratMasuk = ({ handleAddSuratMasuk }) => {
           </div>
           <button
             type="submit"
-            className="bg-green-300 hover:bg-green-200 hover:text-green-100 rounded-md p-2"
-          >
+            className="bg-green-300 hover:bg-green-200 hover:text-green-100 rounded-md p-2">
             Submit
           </button>
         </form>
