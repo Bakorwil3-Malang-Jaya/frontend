@@ -4,7 +4,6 @@ import * as Yup from "yup";
 import { toast } from "react-toastify";
 import { addDataSuratMasuk } from "./apiSuratMasuk";
 
-const c = console.log;
 
 // ============== VALIDATION KOLOM ==============
 const Schema = Yup.object({
@@ -43,6 +42,7 @@ const AddSuratMasuk = ({ handleAddSuratMasuk }) => {
       setposisi([...posisi.filter((data) => data !== name)]);
     }
   };
+
   const formik = useFormik({
     enableReinitialize: true,
     initialValues: {
@@ -62,7 +62,6 @@ const AddSuratMasuk = ({ handleAddSuratMasuk }) => {
     validationSchema: Schema,
 
     onSubmit: async (values) => {
-      c(values);
       const notifyAddData = (message) => toast.success(message);
       formik.values.posisi = posisi;
       formik.values.ditujukan = ditujukan;
@@ -481,6 +480,7 @@ const AddSuratMasuk = ({ handleAddSuratMasuk }) => {
               </div>
             </div>
           </div>
+          
           <button
             type="submit"
             className="bg-green-300 hover:bg-green-200 hover:text-green-100 rounded-md p-2">

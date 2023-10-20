@@ -21,7 +21,7 @@ const SuratMasukList = ({ search }) => {
 
   // Pagination
   const [pageNumber, setPageNumber] = useState(0);
-  const SuratMasukPerPage = 3;
+  const SuratMasukPerPage = 10;
   const pageVisited = pageNumber * SuratMasukPerPage;
   const changePage = ({ selected }) => {
     setPageNumber(selected);

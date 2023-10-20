@@ -8,8 +8,10 @@ import "react-toastify/dist/ReactToastify.css";
 import Login from "./components/login/Login";
 import Homepage from "./pages/Homepage";
 import SuratMasukPage from "./pages/SuratMasukPage";
-import Admin from "./pages/Admin";
+import Admin from "../src/components/Admin/Admin";
 import NotFound from "./pages/NotFound";
+import axios from "axios";
+axios.defaults.withCredentials = true;
 
 function App() {
   return (
@@ -24,7 +26,8 @@ function App() {
               <PrivateRoute>
                 <NavigationLayout />
               </PrivateRoute>
-            }>
+            }
+          >
             <Route path="/homepage" element={<Homepage />} />
             <Route path="*" element={<NotFound />} />
             <Route path="/surat" element={<SuratMasukPage />} />
@@ -35,7 +38,8 @@ function App() {
               <PrivateRoute>
                 <NavigationDashboardAdmin />
               </PrivateRoute>
-            }>
+            }
+          >
             <Route path="/admin" element={<Admin />} />
           </Route>
         </Routes>
