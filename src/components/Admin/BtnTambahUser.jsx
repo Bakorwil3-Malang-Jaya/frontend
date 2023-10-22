@@ -9,7 +9,7 @@ const BtnTambahUser = () => {
         }}
         className="btn bg-[#005DB9] text-white hover:bg-blue-700"
       >
-        + Tambah Surat Masuk
+        + Tambah Users
       </button>
     </div>
   );

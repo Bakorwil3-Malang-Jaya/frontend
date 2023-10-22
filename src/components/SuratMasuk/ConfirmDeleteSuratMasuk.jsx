@@ -7,7 +7,7 @@ export const ConfirmDeleteSuratMasuk = ({
 }) => {
   return (
     <div>
-      <dialog id="my_modal_confirmDeleteBerita" className="modal">
+      <dialog id="my_modal_confirmDeleteSurat" className="modal">
         <form method="dialog" className="modal-box">
           <div className=" flex flex-col items-center justify-center">
             <img className="w-36" src={LogoHapus} alt="LogoHapus" />
@@ -17,7 +17,7 @@ export const ConfirmDeleteSuratMasuk = ({
             <div className="flex gap-4">
               <button
                 onClick={() => {
-                  window.my_modal_confirmDeleteBerita.close();
+                  window.my_modal_confirmDeleteSurat.close();
                 }}
                 className="btn bg-[#005DB9] w-[170px] text-white"
               >

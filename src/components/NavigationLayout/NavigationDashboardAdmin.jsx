@@ -1,12 +1,12 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 import NavbarDashboard from "../DahsboardNavbar/NavbarDashboard";
-import SidebarDashboard from "../Sidebar/SidebarDashboard";
+import SidebarAdmin from "../Sidebar/SidebarAdmin";
 
 const NavigationDashboardAdmin = () => {
   return (
     <div className="flex">
-      <SidebarDashboard />
+      <SidebarAdmin />
       <div className="min-h-screen flex grow flex-col">
         <NavbarDashboard />
         <Outlet />

@@ -47,7 +47,6 @@ const EditSuratMasuk = ({ handleEditSuratMasuk, pickOfSuratMasukEdit }) => {
   const handleCloseModal = () => {
     window.my_modal_editSuratMasuk.close();
   };
-  console.log(pickOfSuratMasukEdit)
   const formik = useFormik({
     enableReinitialize: true,
     initialValues: {

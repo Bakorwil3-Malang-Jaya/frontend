@@ -112,14 +112,6 @@ const Admin = () => {
                     <div
                       className="line-clamp-2"
                       dangerouslySetInnerHTML={{
-                        __html: index,
-                      }}
-                    />
-                  </td>
-                  <td>
-                    <div
-                      className="line-clamp-2"
-                      dangerouslySetInnerHTML={{
                         __html: acc.name,
                       }}
                     />

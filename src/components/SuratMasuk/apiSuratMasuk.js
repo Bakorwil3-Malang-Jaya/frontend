@@ -16,7 +16,7 @@ export const deleteSuratMasuk = async (id, setDataSuratMasuk, notifyDelete) => {
     setDataSuratMasuk((prevData) =>
       prevData.filter((surat) => surat.id !== id)
     );
-    notifyDelete("Data Berita Berhasil Dihapus!");
+    notifyDelete("Data Surat Berhasil Dihapus!");
     window.location.reload();
   } catch (error) {
     console.log(error);
@@ -61,7 +61,7 @@ export const addDataSuratMasuk = async (
 };
 
 export const editDataSuratMasuk = async (
-  pickOfBeritaEdit,
+  pickOfSuratEdit,
   formData,
   values,
   handleEdit,
@@ -71,7 +71,7 @@ export const editDataSuratMasuk = async (
 ) => {
   try {
     await axios.patch(
-      `http://localhost:4000/surat/${pickOfBeritaEdit.id}`,
+      `http://localhost:4000/surat/${pickOfSuratEdit.id}`,
       formData,
       {
         headers: {
@@ -80,7 +80,7 @@ export const editDataSuratMasuk = async (
       }
     );
     handleEdit({
-      id: pickOfBeritaEdit.id,
+      id: pickOfSuratEdit.id,
       nomor_agenda: values.nomor_agenda,
       tgl_diterima: values.tgl_diterima,
       tgl_surat: values.tgl_surat,
@@ -94,7 +94,7 @@ export const editDataSuratMasuk = async (
       tahun: values.tahun,
       fileSurat: values.fileSurat,
     });
-    notifyEdit("Data Berita Berhasil Di edit!");
+    notifyEdit("Data Surat Berhasil Di edit!");
     handleCloseModal();
     formik.resetForm();
     window.location.reload();

@@ -1,13 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import AddBerita from "./AddSuratMasuk";
-import EditBerita from "./EditSuratMasuk";
-import DetailBerita from "./DetailSuratMasuk";
+import AddSurat from "./AddSuratMasuk";
+import EditSurat from "./EditSuratMasuk";
+import DetailSurat from "./DetailSuratMasuk";
 import Dropdown from "./Dropdown";
 import { ConfirmDeleteSuratMasuk } from "./ConfirmDeleteSuratMasuk";
 import { deleteSuratMasuk, getSuratMasuk } from "./apiSuratMasuk";
 import ReactPaginate from "react-paginate";
-import { FaTrash, FaExclamation, FaPencil } from "react-icons/fa6";
+import {
+  FaTrash,
+  FaExclamation,
+  FaPencil,
+  FaArrowsUpDown,
+} from "react-icons/fa6";
 import BtnTambah from "./BtnTambah";
 
 const SuratMasukList = ({ search }) => {
@@ -49,7 +54,7 @@ const SuratMasukList = ({ search }) => {
     setDataTahunFilter(dataSuratMasuk);
     setPickTahun("semua");
   };
-  // =========== DELETE BERITA ===========
+  // =========== DELETE Surat ===========
   const deleteSuratMasukId = async (id) => {
     const notifyDelete = (message) => toast.success(message);
     try {
@@ -79,7 +84,7 @@ const SuratMasukList = ({ search }) => {
     );
   };
 
-  // =========== ADD BERITA ===========
+  // =========== ADD Surat ===========
   const handleAddSuratMasuk = (newSuratMasuk) => {
     if (Array.isArray(dataSuratMasuk)) {
       setDataSuratMasuk([...dataSuratMasuk, newSuratMasuk]);
@@ -128,7 +133,11 @@ const SuratMasukList = ({ search }) => {
             <thead>
               <tr>
                 <th className="text-center">
-                  <button onClick={handlerBalik}>No</button>
+                  <button onClick={handlerBalik}>
+                    <div className="flex items-center">
+                      No <FaArrowsUpDown />
+                    </div>
+                  </button>
                 </th>
                 <th className="text-center">Nomor Surat</th>
                 <th className="text-center">Pengirim</th>
@@ -140,10 +149,9 @@ const SuratMasukList = ({ search }) => {
 
             {/* ==================== TABEL BODY ==================== */}
             <tbody className="text-center">
-              {dataToMap.map((surat, index) => (
+              {dataToMap.map((surat) => (
                 <tr key={surat.id}>
                   {pageVisited + surat.nomor_agenda}
-
                   {/* ---------------- KOLOM NOMOR SURAT ----------------  */}
                   <td>
                     <div
@@ -180,16 +188,16 @@ const SuratMasukList = ({ search }) => {
                       }}
                     />
                   </td>
-
                   {/* =============== KOLOM ACTION ===============  */}
                   <td className="flex gap-2 justify-center items-center">
                     {/* ---------------- BUTTON HAPUS ----------------  */}
                     <button
                       onClick={() => {
-                        window.my_modal_confirmDeleteBerita.showModal();
+                        window.my_modal_confirmDeleteSurat.showModal();
                         setPickIdDelete(surat.id);
                       }}
-                      className="btn-secondary font-medium rounded-lg text-sm px-5 py-2.5 text-center text-white">
+                      className="btn-secondary font-medium rounded-lg text-sm px-5 py-2.5 text-center text-white"
+                    >
                       <FaTrash />
                     </button>
 
@@ -213,7 +221,8 @@ const SuratMasukList = ({ search }) => {
                         });
                         window.my_modal_editSuratMasuk.showModal();
                       }}
-                      className="btn-primary font-medium rounded-lg text-sm px-5 py-2.5 text-center text-white">
+                      className="btn-primary font-medium rounded-lg text-sm px-5 py-2.5 text-center text-white"
+                    >
                       <FaPencil />
                     </button>
 
@@ -238,7 +247,8 @@ const SuratMasukList = ({ search }) => {
                         });
                         window.my_modal_getSuratMasuk.showModal();
                       }}
-                      className="btn-accent font-medium rounded-lg text-sm px-5 py-2.5 text-center text-white">
+                      className="btn-accent font-medium rounded-lg text-sm px-5 py-2.5 text-center text-white"
+                    >
                       <FaExclamation />
                     </button>
                   </td>
@@ -266,12 +276,12 @@ const SuratMasukList = ({ search }) => {
         </div>
 
         {/* ====== HANDLE ADD, EDIT, DETAIL, CONFIRM SURAT MASUK ====== */}
-        <AddBerita handleAddSuratMasuk={handleAddSuratMasuk} />
-        <EditBerita
+        <AddSurat handleAddSuratMasuk={handleAddSuratMasuk} />
+        <EditSurat
           handleEditSuratMasuk={handleEditSuratMasuk}
           pickOfSuratMasukEdit={pickOfSuratMasukEdit}
         />
-        <DetailBerita
+        <DetailSurat
           handleGetSuratMasuk={handleGetSuratMasuk}
           pickOfSuratMasukDetail={pickOfSuratMasukDetail}
         />

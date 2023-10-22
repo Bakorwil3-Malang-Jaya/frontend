@@ -23,7 +23,7 @@ const AddSuratMasuk = ({ handleAddSuratMasuk }) => {
   const [posisi, setposisi] = useState([]);
 
   const handleCloseModal = () => {
-    window.my_modal_addBerita.close();
+    window.my_modal_addSurat.close();
   };
 
   const handlerCheckDitujukan = (e) => {
@@ -91,7 +91,7 @@ const AddSuratMasuk = ({ handleAddSuratMasuk }) => {
   });
   return (
     <>
-      <dialog id="my_modal_addBerita" className="modal backdrop-blur-sm ">
+      <dialog id="my_modal_addSurat" className="modal backdrop-blur-sm ">
         <form
           method="dialog"
           data-testid="form"
@@ -106,7 +106,7 @@ const AddSuratMasuk = ({ handleAddSuratMasuk }) => {
             </button>
           </form>
 
-          {/* ==================== KOLOM-KOLOM ISI BERITA ==================== */}
+          {/* ==================== KOLOM-KOLOM ISI Surat ==================== */}
           <h1 className="text-2xl my-3 mx-auto font-bold">Tambah Data Surat</h1>
 
           {/* ==================== NOMOR AGENDA ==================== */}
