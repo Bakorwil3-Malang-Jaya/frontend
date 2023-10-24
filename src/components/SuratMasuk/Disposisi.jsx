@@ -1,6 +1,11 @@
 import React from "react";
+import dayjs from "dayjs";
 
 const Disposisi = React.forwardRef((props, ref) => {
+  const tgl_diterima = dayjs(props.tgl_diterima).format(
+    "DD-MM-YYYY"
+  );
+  const tgl_surat = dayjs(props.tgl_surat).format("DD-MM-YYYY");
   return (
     <div ref={ref}>
       <div className="mt-[161px] ml-14">
@@ -13,13 +18,13 @@ const Disposisi = React.forwardRef((props, ref) => {
               </td>
               <td width="105"></td>
               <td align="left">
-                <b>{props.tgl_diterima}</b>
+                <b>{tgl_diterima}</b>
               </td>
             </tr>
             <tr height="50">
               <td width="90"></td>
               <td align="left">
-                <b>{props.tgl_surat}</b>
+                <b>{tgl_surat}</b>
               </td>
               <td width="105"></td>
               <td align="left">

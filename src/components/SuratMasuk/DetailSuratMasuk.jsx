@@ -8,9 +8,9 @@ const DetailSuratMasuk = ({ pickOfSuratMasukDetail }) => {
   const urlFile = "http://localhost:4000/SuratMasuk/";
 
   const tgl_diterima = dayjs(pickOfSuratMasukDetail.tgl_diterima).format(
-    "DD-MM-YY"
+    "DD-MM-YYYY"
   );
-  const tgl_surat = dayjs(pickOfSuratMasukDetail.tgl_surat).format("DD-MM-YY");
+  const tgl_surat = dayjs(pickOfSuratMasukDetail.tgl_surat).format("DD-MM-YYYY");
 
   const componentRef = useRef();
   return (

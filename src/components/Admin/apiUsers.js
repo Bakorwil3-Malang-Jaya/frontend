@@ -1,8 +1,10 @@
 import axios from "axios";
 
+const URL = "http://localhost/4000";
+
 export const deleteUsers = async (id, setDataUsers, notifyDelete) => {
   try {
-    await axios.delete(`http://localhost:4000/users/${id}`);
+    await axios.delete(`${URL}/users/${id}`);
     setDataUsers((prevData) => prevData.filter((users) => users.id !== id));
     notifyDelete("Data Berita Berhasil Dihapus!");
     window.location.reload();
@@ -20,7 +22,7 @@ export const addDataUsers = async (
   formik
 ) => {
   try {
-    await axios.post("http://localhost:4000/users", formData, {
+    await axios.post(`${URL}/users`, formData, {
       headers: {
         "content-Type": "multipart/form-data",
       },

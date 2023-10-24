@@ -1,18 +1,20 @@
 import axios from "axios";
 
+const URL = 'http://localhost/4000';
+
 export const getSuratMasuk = async () => {
-  const res = await axios.get("http://localhost:4000/surat");
+  const res = await axios.get(`${URL}/surat`);
   return res.data;
 };
 
 export const getSuratMasukCount = async () => {
-  const res = await axios.get("http://localhost:4000/suratcount");
+  const res = await axios.get(`${URL}/suratcount`);
   return res.data;
 };
 
 export const deleteSuratMasuk = async (id, setDataSuratMasuk, notifyDelete) => {
   try {
-    await axios.delete(`http://localhost:4000/surat/${id}`);
+    await axios.delete(`${URL}/surat/${id}`);
     setDataSuratMasuk((prevData) =>
       prevData.filter((surat) => surat.id !== id)
     );
@@ -32,7 +34,7 @@ export const addDataSuratMasuk = async (
   formik
 ) => {
   try {
-    await axios.post("http://localhost:4000/surat", formData, {
+    await axios.post(`${URL}/surat`, formData, {
       headers: {
         "content-Type": "multipart/form-data",
       },
@@ -70,15 +72,11 @@ export const editDataSuratMasuk = async (
   formik
 ) => {
   try {
-    await axios.patch(
-      `http://localhost:4000/surat/${pickOfSuratEdit.id}`,
-      formData,
-      {
-        headers: {
-          "content-Type": "multipart/form-data",
-        },
-      }
-    );
+    await axios.patch(`${URL}/surat/${pickOfSuratEdit.id}`, formData, {
+      headers: {
+        "content-Type": "multipart/form-data",
+      },
+    });
     handleEdit({
       id: pickOfSuratEdit.id,
       nomor_agenda: values.nomor_agenda,
