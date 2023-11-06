@@ -24,7 +24,7 @@ const SuratMasukList = ({ search }) => {
   const [dataTahunFilter, setDataTahunFilter] = useState([]);
   const [tahunFromDB, setTahunFromDB] = useState([]);
 
-  // Pagination
+  // =========== PAGINATION ===========
   const [pageNumber, setPageNumber] = useState(0);
   const SuratMasukPerPage = 10;
   const pageVisited = pageNumber * SuratMasukPerPage;
@@ -49,11 +49,11 @@ const SuratMasukList = ({ search }) => {
     setDataTahunFilter(filterTahun);
     setPickTahun(th);
   };
-
   const semua = () => {
     setDataTahunFilter(dataSuratMasuk);
     setPickTahun("semua");
   };
+
   // =========== DELETE Surat ===========
   const deleteSuratMasukId = async (id) => {
     const notifyDelete = (message) => toast.success(message);
@@ -91,6 +91,7 @@ const SuratMasukList = ({ search }) => {
     }
   };
 
+  // =========== TOGGLE URUTAN NOMER ===========
   const [balik, setBalik] = useState(false);
   const handlerBalik = () => {
     setBalik(!balik);
@@ -111,17 +112,15 @@ const SuratMasukList = ({ search }) => {
 
   return (
     <>
-      {/* ============== DROPDOWN & BTN TAMBAH ============== */}
       <div className="flex">
-        {/* ---------------- DROPDOWN ---------------- */}
+        {/* ============== BUTTON DROPDOWN ============== */}
         <Dropdown
           pickTahun={pickTahun}
           semua={semua}
           tahunFromDB={tahunFromDB}
           tahunFilter={tahunFilter}
         />
-
-        {/* ---------------- BUTTON TAMBAH ---------------- */}
+        {/* ============== BUTTON TAMBAH ============== */}
         <BtnTambah />
       </div>
 

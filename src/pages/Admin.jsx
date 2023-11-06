@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import jwtDecode from "jwt-decode";
 import { useNavigate } from "react-router-dom";
-import BtnTambahUser from "./BtnTambahUser";
+import BtnTambahUser from "../components/Admin/BtnTambahUser";
 import { FaTrash } from "react-icons/fa6";
-import { deleteUsers } from "./apiUsers";
-import { ConfirmDeleteUsers } from "./confirmDeleteUsers";
-import AddDataUsers from "./addDataUsers";
+import { deleteUsers } from "../components/Admin/apiUsers";
+import { ConfirmDeleteUsers } from "../components/Admin/confirmDeleteUsers";
+import AddDataUsers from "../components/Admin/addDataUsers";
 
 const Admin = () => {
   const c = console.log;

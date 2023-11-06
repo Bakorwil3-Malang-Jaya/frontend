@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const URL = 'http://localhost/4000';
+const URL = "http://localhost:4000";
 
 export const getSuratMasuk = async () => {
   const res = await axios.get(`${URL}/surat`);

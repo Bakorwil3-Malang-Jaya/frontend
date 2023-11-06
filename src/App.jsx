@@ -8,7 +8,9 @@ import "react-toastify/dist/ReactToastify.css";
 import Login from "./components/login/Login";
 import Homepage from "./pages/Homepage";
 import SuratMasukPage from "./pages/SuratMasukPage";
-import Admin from "../src/components/Admin/Admin";
+import Admin from "./pages/Admin";
+import RequestPage from "./pages/RequestPage";
+import SuratKeluarPage from "./pages/SuratKeluarPage";
 import NotFound from "./pages/NotFound";
 import axios from "axios";
 axios.defaults.withCredentials = true;
@@ -28,9 +30,11 @@ function App() {
               </PrivateRoute>
             }
           >
-            <Route path="/homepage" element={<Homepage />} />
             <Route path="*" element={<NotFound />} />
+            <Route path="/homepage" element={<Homepage />} />
             <Route path="/surat" element={<SuratMasukPage />} />
+            <Route path="/suratkeluar" element={<SuratKeluarPage />} />
+            <Route path="/request" element={<RequestPage />} />
           </Route>
           {/* ====== ADMIN ====== */}
           <Route

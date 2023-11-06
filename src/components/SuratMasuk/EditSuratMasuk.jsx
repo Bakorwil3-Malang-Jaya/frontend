@@ -28,6 +28,7 @@ const EditSuratMasuk = ({ handleEditSuratMasuk, pickOfSuratMasukEdit }) => {
       setposisi(pickOfSuratMasukEdit?.posisi.split(","));
     }
   }, [pickOfSuratMasukEdit]);
+  
   const handlerCheckDitujukan = (e) => {
     const { checked, name } = e.target;
     if (checked) {
