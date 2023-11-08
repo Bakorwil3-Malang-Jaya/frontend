@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
+import { toast } from "react-toastify";
 import BtnTambah from "./BtnTambah";
-import { getRequest } from "./apiRequest";
+import { getRequest, deleteRequest } from "./apiRequest";
 import AddRequest from "./AddRequest";
 import dayjs from "dayjs";
-import { FaPencil } from "react-icons/fa6";
-// import Dropdown from "./Dropdown";
+import { FaPencil, FaTrash } from "react-icons/fa6";
+import EditRequest from "./EditRequest";
+import { ConfirmDeleteRequest } from "./confirmDeleteRequest";
 
 const RequestList = () => {
   const [dataRequest, setDataRequest] = useState([]);
@@ -25,6 +27,25 @@ const RequestList = () => {
     }
   };
 
+  // =========== EDIT REQUEST ===========
+  const handleEditRequest = (requestData) => {
+    setpickOfRequestEdit(requestData);
+    setDataRequest((prevData) =>
+      prevData.map((request) =>
+        request.id === requestData.id ? requestData : request
+      )
+    );
+  };
+
+  // =========== DELETE REQUEST ===========
+  const deleteRequestId = async (id) => {
+    const notifyDelete = (message) => toast.success(message);
+    try {
+      await deleteRequest(id, setDataRequest, notifyDelete);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <>
       <div className="mb-14">
@@ -93,19 +114,29 @@ const RequestList = () => {
                     />
                   </td>
                   <td className="flex gap-2 justify-center items-center">
+                    {/* =============== BUTTON HAPUS ===============  */}
+                    <button
+                      onClick={() => {
+                        window.my_modal_confirmDeleteRequest.showModal();
+                        setPickIdDelete(request.id);
+                      }}
+                      className="btn-secondary font-medium rounded-lg text-sm px-5 py-2.5 text-center text-white">
+                      <FaTrash />
+                    </button>
+
                     {/* =============== BUTTON EDIT ===============  */}
                     <button
                       onClick={() => {
-                        handleEditSuratKeluar({
-                          id: surat.id,
-                          nomor_urut: surat.nomor_urut,
-                          klas: surat.klas,
-                          tanggal: surat.tanggal,
+                        handleEditRequest({
+                          id: request.id,
+                          bidang: request.bidang,
+                          perihal: request.perihal,
+                          tanggal: request.tanggal,
+                          nomor_surat: request.nomor_surat,
                         });
-                        window.my_modal_editSuratKeluar.showModal();
+                        window.my_modal_editRequest.showModal();
                       }}
-                      className="btn-primary font-medium rounded-lg text-sm px-5 py-2.5 text-center text-white"
-                    >
+                      className="btn-primary font-medium rounded-lg text-sm px-5 py-2.5 text-center text-white">
                       <FaPencil />
                     </button>
                   </td>
@@ -116,6 +147,14 @@ const RequestList = () => {
         </div>
 
         <AddRequest handleAddRequest={handleAddRequest} />
+        <ConfirmDeleteRequest
+          deleteRequestId={deleteRequestId}
+          pickIdDelete={pickIdDelete}
+        />
+        <EditRequest
+          handleEditRequest={handleEditRequest}
+          pickOfRequestEdit={pickOfRequestEdit}
+        />
       </div>
     </>
   );

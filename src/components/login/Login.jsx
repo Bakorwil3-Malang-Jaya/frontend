@@ -33,13 +33,19 @@ const Login = () => {
         sessionStorage.setItem("name", user.name);
         sessionStorage.setItem("role", user.role);
         navigate("/admin");
-      } else if (allowedUserIDs.includes(user.userid) && user.role === "user") {
+      } else if (allowedUserIDs.includes(user.userid) && user.role === "arsip") {
         toast.success("Login Berhasil");
         sessionStorage.setItem("access_token", token);
         sessionStorage.setItem("email", user.email);
         sessionStorage.setItem("name", user.name);
         navigate("/homepage");
-      } else {
+      }else if (allowedUserIDs.includes(user.userid) && user.role === "pemerintahan" || "kemasyarakatan" || "PE" || "sarpras" ){
+        toast.success("Login Berhasil");
+        sessionStorage.setItem("access_token", token);
+        sessionStorage.setItem("email", user.email);
+        sessionStorage.setItem("name", user.name);
+        navigate("/requestbidang");
+      }else {
         toast.error("Gagal Login !");
       }
     } catch (error) {

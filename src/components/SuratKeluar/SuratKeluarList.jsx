@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { toast } from "react-toastify";
 import AddSurat from "./AddSuratKeluar";
 import { getSuratKeluar, deleteSuratKeluar } from "./apiSuratKeluar";
 import { FaTrash, FaPencil } from "react-icons/fa6";
@@ -105,8 +106,7 @@ const SuratKeluarList = () => {
                         window.my_modal_confirmDeleteSuratKeluar.showModal();
                         setPickIdDelete(surat.id);
                       }}
-                      className="btn-secondary font-medium rounded-lg text-sm px-5 py-2.5 text-center text-white"
-                    >
+                      className="btn-secondary font-medium rounded-lg text-sm px-5 py-2.5 text-center text-white">
                       <FaTrash />
                     </button>
 
@@ -121,8 +121,7 @@ const SuratKeluarList = () => {
                         });
                         window.my_modal_editSuratKeluar.showModal();
                       }}
-                      className="btn-primary font-medium rounded-lg text-sm px-5 py-2.5 text-center text-white"
-                    >
+                      className="btn-primary font-medium rounded-lg text-sm px-5 py-2.5 text-center text-white">
                       <FaPencil />
                     </button>
                   </td>

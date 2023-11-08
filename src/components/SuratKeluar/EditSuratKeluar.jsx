@@ -8,7 +8,7 @@ import { editDataSuratKeluar } from "./apiSuratKeluar";
 const Schema = Yup.object({
   nomor_urut: Yup.string().required(),
   klas: Yup.string().required(),
-  tanngal: Yup.string().required(),
+  tanggal: Yup.string().required(),
 });
 
 const EditSuratKeluar = ({ handleEditSuratKeluar, pickOfSuratKeluarEdit }) => {

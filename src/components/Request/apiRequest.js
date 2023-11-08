@@ -11,13 +11,13 @@ export const getRequest = async () => {
     return res.data;
   };
 
-  export const deleteRequest = async (id, setDatarequest, notifyDelete) => {
+  export const deleteRequest = async (id, setDataRequest, notifyDelete) => {
     try {
       await axios.delete(`${URL}/request/${id}`);
-      setDatarequest((prevData) =>
-        prevData.filter((surat) => surat.id !== id)
+      setDataRequest((prevData) =>
+        prevData.filter((request) => request.id !== id)
       );
-      notifyDelete("Data Surat Berhasil Dihapus!");
+      notifyDelete("Data request Berhasil Dihapus!");
       window.location.reload();
     } catch (error) {
       console.log(error);
@@ -44,7 +44,7 @@ export const getRequest = async () => {
        tanggal: values.tanggal,
        nomor_surat: values.nomor_surat,
       });
-      notifyAddData("Data Surat berhasil ditambahkan!");
+      notifyAddData("request data berhasil ditambahkan!");
       handleCloseModal();
       formik.resetForm();
       window.location.reload();
@@ -54,16 +54,17 @@ export const getRequest = async () => {
   };
 
   export const editDataRequest = async (
-    pickOfSuratEdit,
+    pickOfRequestEdit,
     formData,
     values,
     handleEdit,
     notifyEdit,
     handleCloseModal,
+    toast,
     formik
   ) => {
     try {
-      await axios.patch(`${URL}/request/${pickOfSuratEdit.id}`, formData, {
+      await axios.patch(`${URL}/request/${pickOfRequestEdit.id}`, formData, {
         headers: {
           "content-Type": "multipart/form-data",
         },
@@ -75,7 +76,7 @@ export const getRequest = async () => {
        tanggal: values.tanggal,
        nomor_surat: values.nomor_surat,
       });
-      notifyEdit("Data Surat Berhasil Di edit!");
+      notifyEdit("request data Berhasil Di edit!");
       handleCloseModal();
       formik.resetForm();
       window.location.reload();

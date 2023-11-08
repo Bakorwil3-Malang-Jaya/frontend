@@ -54,7 +54,7 @@ const SuratMasukList = ({ search }) => {
     setPickTahun("semua");
   };
 
-  // =========== DELETE Surat ===========
+  // =========== DELETE SURAT MASUK ===========
   const deleteSuratMasukId = async (id) => {
     const notifyDelete = (message) => toast.success(message);
     try {
