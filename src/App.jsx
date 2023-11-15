@@ -10,10 +10,11 @@ import Login from "./components/login/Login";
 import Homepage from "./pages/Homepage";
 import SuratMasukPage from "./pages/SuratMasukPage";
 import Admin from "./pages/Admin";
-import RequestPage from "./pages/RequestPage";
+import RequestPageArsip from "./pages/RequestPageArsip";
 import SuratKeluarPage from "./pages/SuratKeluarPage";
 import NotFound from "./pages/NotFound";
 import axios from "axios";
+import RequestPageBidang from "./pages/RequestPageBidang";
 axios.defaults.withCredentials = true;
 
 function App() {
@@ -29,12 +30,13 @@ function App() {
               <PrivateRoute>
                 <NavigationLayout />
               </PrivateRoute>
-            }>
+            }
+          >
             <Route path="*" element={<NotFound />} />
             <Route path="/homepage" element={<Homepage />} />
             <Route path="/surat" element={<SuratMasukPage />} />
             <Route path="/suratkeluar" element={<SuratKeluarPage />} />
-            <Route path="/request" element={<RequestPage />} />
+            <Route path="/request" element={<RequestPageArsip />} />
           </Route>
           {/* ====== BIDANG ====== */}
           <Route
@@ -42,8 +44,9 @@ function App() {
               <PrivateRoute>
                 <NavigationLayoutBidang />
               </PrivateRoute>
-            }>
-            <Route path="/requestbidang" element={<RequestPage />} />
+            }
+          >
+            <Route path="/requestbidang" element={<RequestPageBidang />} />
           </Route>
           {/* ====== ADMIN ====== */}
           <Route
@@ -51,7 +54,8 @@ function App() {
               <PrivateRoute>
                 <NavigationDashboardAdmin />
               </PrivateRoute>
-            }>
+            }
+          >
             <Route path="/admin" element={<Admin />} />
           </Route>
         </Routes>

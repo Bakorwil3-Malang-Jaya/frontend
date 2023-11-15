@@ -1,5 +1,5 @@
 import { useFormik } from "formik";
-import React, { useState } from "react";
+import React from "react";
 import * as Yup from "yup";
 import { toast } from "react-toastify";
 import { addDataRequest } from "./apiRequest";
@@ -9,7 +9,7 @@ const Schema = Yup.object({
   bidang: Yup.string().required(),
   perihal: Yup.string().required(),
   tanggal: Yup.string().required(),
-  nomor_surat: Yup.string().required(),
+  // nomor_surat: Yup.string().required(),
 });
 
 const AddRequest = ({ handleAddRequest }) => {
@@ -132,7 +132,7 @@ const AddRequest = ({ handleAddRequest }) => {
             </div>
           </div>
           {/* ==================== NOMOR SURAT ==================== */}
-          <div className="grid mb-3 gap-2">
+          {/* <div className="grid mb-3 gap-2">
             <div>
               <label className="text-l" htmlFor="nomor_surat">
                 nomor_surat
@@ -147,11 +147,12 @@ const AddRequest = ({ handleAddRequest }) => {
                 id="nomor_surat"
                 name="nomor_surat"
                 type="text"
+                placeholder="Petugas Arsip Yang Menginput"
                 onChange={formik.handleChange}
                 value={formik.values.nomor_surat}
               />
             </div>
-          </div>
+          </div> */}
 
           <button
             type="submit"

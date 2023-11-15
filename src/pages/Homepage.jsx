@@ -1,13 +1,18 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { getSuratMasukCount } from "../components/SuratMasuk/apiSuratMasuk";
+import { getSuratKeluarCount } from "../components/SuratKeluar/apiSuratKeluar";
 import { Typewriter } from "react-simple-typewriter";
 
 const Homepage = () => {
   const [total, setTotal] = useState([]);
+  const [totalSK, setTotalSK] = useState([]);
   useEffect(() => {
     getSuratMasukCount().then((data) => {
       setTotal(data.total);
+    });
+    getSuratKeluarCount().then((data) => {
+      setTotalSK(data.total);
     });
   }, []);
 
@@ -32,6 +37,7 @@ const Homepage = () => {
           </p>
           <p className="text-2xl">Aplikasi E-Surat Bakorwil 3 Malang</p>
           <p>Jumlah surat masuk saat ini adalah : {total} Surat</p>
+          <p>Jumlah surat masuk saat ini adalah : {totalSK} Surat</p>
         </div>
       </div>
     </>
