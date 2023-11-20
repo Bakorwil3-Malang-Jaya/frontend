@@ -4,7 +4,6 @@ import BtnTambah from "./BtnTambah";
 import { getRequest, deleteRequest } from "./apiRequest";
 import AddRequest from "./AddRequest";
 import dayjs from "dayjs";
-import { FaPencil, FaTrash } from "react-icons/fa6";
 import EditRequest from "./EditRequest";
 import { ConfirmDeleteRequest } from "./confirmDeleteRequest";
 import ReactPaginate from "react-paginate";
@@ -55,6 +54,7 @@ const RequestListBidang = () => {
       console.log(error);
     }
   };
+
   return (
     <>
       <div className="mb-14">
@@ -72,8 +72,8 @@ const RequestListBidang = () => {
               <tr>
                 <th className="text-center">No</th>
                 <th className="text-center">Bidang</th>
-                <th className="text-center">Catatan</th>
                 <th className="text-center">Tanggal</th>
+                <th className="text-center">Gambar</th>
                 <th className="text-center">Nomor Surat</th>
                 {/* <th className="text-center">Aksi</th> */}
               </tr>
@@ -84,20 +84,19 @@ const RequestListBidang = () => {
                 .slice(pageVisited, pageVisited + RequestPerPage)
                 .map((request, idx) => (
                   <tr key={request.id}>
-
-                    <td>
+                    <th>
                       <div
                         className="line-clamp-2"
                         dangerouslySetInnerHTML={{
                           __html: pageVisited + idx + 1,
                         }}
                       />
-                    </td>
+                    </th>
                     <td>
                       <div
                         className="line-clamp-2"
                         dangerouslySetInnerHTML={{
-                          __html: request.perihal,
+                          __html: request.bidang,
                         }}
                       />
                     </td>
@@ -108,6 +107,13 @@ const RequestListBidang = () => {
                           __html: dayjs(request.tanggal).format("DD/MM/YYYY"),
                         }}
                       />
+                    </td>
+                    <td className="grid justify-items-center">
+                      <div className="mask mask-squircle w-12 h-12 ">
+                        <a target={"__blank"} href={`${request.url}`}>
+                          <img src={`${request.url}`} alt="gambar" />
+                        </a>
+                      </div>
                     </td>
                     <td>
                       <div

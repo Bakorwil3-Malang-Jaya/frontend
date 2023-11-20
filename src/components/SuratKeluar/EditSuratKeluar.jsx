@@ -1,15 +1,15 @@
 import { useFormik } from "formik";
 import React from "react";
-import * as Yup from "yup";
+// import * as Yup from "yup";
 import { toast } from "react-toastify";
 import { editDataSuratKeluar } from "./apiSuratKeluar";
 
 // ============== VALIDATION KOLOM ==============
-const Schema = Yup.object({
-  nomor_urut: Yup.string().required(),
-  klas: Yup.string().required(),
-  tanggal: Yup.string().required(),
-});
+// const Schema = Yup.object({
+//   nomor_urut: Yup.string().required(),
+//   klas: Yup.string().required(),
+//   tanggal: Yup.string().required(),
+// });
 
 const EditSuratKeluar = ({ handleEditSuratKeluar, pickOfSuratKeluarEdit }) => {
   const c = console.log;
@@ -19,18 +19,30 @@ const EditSuratKeluar = ({ handleEditSuratKeluar, pickOfSuratKeluarEdit }) => {
   const formik = useFormik({
     enableReinitialize: true,
     initialValues: {
-      nomor_urut: pickOfSuratKeluarEdit?.nomor_urut || "",
-      klas: pickOfSuratKeluarEdit?.klas || "",
-      tanggal: pickOfSuratKeluarEdit?.tanggal || "",
+      nomorurut_satu: pickOfSuratKeluarEdit?.nomorurut_satu || "",
+      klas_satu: pickOfSuratKeluarEdit?.klas_satu || "",
+      tanggal_satu: pickOfSuratKeluarEdit?.tanggal_satu || "",
+      nomorurut_dua: pickOfSuratKeluarEdit?.nomorurut_dua || "",
+      klas_dua: pickOfSuratKeluarEdit?.klas_dua || "",
+      tanggal_dua: pickOfSuratKeluarEdit?.tanggal_dua || "",
+      nomorurut_tiga: pickOfSuratKeluarEdit?.nomorurut_tiga || "",
+      klas_tiga: pickOfSuratKeluarEdit?.klas_tiga || "",
+      tanggal_tiga: pickOfSuratKeluarEdit?.tanggal_tiga || "",
     },
-    validationSchema: Schema,
+    // validationSchema: Schema,
 
     onSubmit: async (values) => {
       const notifyEdit = (message) => toast.success(message);
       const formData = new FormData();
-      formData.append("nomor_urut", values.nomor_urut);
-      formData.append("klas", values.klas);
-      formData.append("tanggal", values.tanggal);
+      formData.append("nomorurut_satu", values.nomorurut_satu);
+      formData.append("klas_satu", values.klas_satu);
+      formData.append("tanggal_satu", values.tanggal_satu);
+      formData.append("nomorurut_dua", values.nomorurut_dua);
+      formData.append("klas_dua", values.klas_dua);
+      formData.append("tanggal_dua", values.tanggal_dua);
+      formData.append("nomorurut_tiga", values.nomorurut_tiga);
+      formData.append("klas_tiga", values.klas_tiga);
+      formData.append("tanggal_tiga", values.tanggal_tiga);
 
       editDataSuratKeluar(
         pickOfSuratKeluarEdit,
@@ -64,67 +76,200 @@ const EditSuratKeluar = ({ handleEditSuratKeluar, pickOfSuratKeluarEdit }) => {
           {/* ==================== KOLOM-KOLOM ISI Surat ==================== */}
           <h1 className="text-2xl my-3 mx-auto font-bold">Edit Surat Keluar</h1>
 
-          {/* ==================== NOMOR URUT ==================== */}
-          <div className="grid mb-3 gap-2">
-            <div>
-              <label className="text-l" htmlFor="nomor_urut">
-                Nomor Urut
-              </label>
-              {formik.errors.nomor_urut && formik.touched.nomor_urut && (
-                <p className="mt-1 text-red-500 max-[640px]:text-sm">
-                  {formik.errors.nomor_urut}
-                </p>
-              )}
-              <input
-                className="input input-bordered input-info w-full "
-                id="nomor_urut"
-                name="nomor_urut"
-                type="text"
-                onChange={formik.handleChange}
-                value={formik.values.nomor_urut}
-              />
+          <div className="grid grid-cols-3 gap-4">
+            {/* ==================== NOMOR URUT SATU ==================== */}
+            <div className="grid mb-3 gap-2">
+              <div>
+                <label className="text-l" htmlFor="nomorurut_satu">
+                  Nomor Urut
+                </label>
+                {formik.errors.nomorurut_satu &&
+                  formik.touched.nomorurut_satu && (
+                    <p className="mt-1 text-red-500 max-[640px]:text-sm">
+                      {formik.errors.nomorurut_satu}
+                    </p>
+                  )}
+                <input
+                  className="input input-bordered input-info w-full "
+                  id="nomorurut_satu"
+                  name="nomorurut_satu"
+                  type="text"
+                  onChange={formik.handleChange}
+                  value={formik.values.nomorurut_satu}
+                />
+              </div>
             </div>
-          </div>
-          {/* ==================== KLAS ==================== */}
-          <div className="grid mb-3 gap-2">
-            <div>
-              <label className="text-l" htmlFor="klas">
-                Klas
-              </label>
-              {formik.errors.klas && formik.touched.klas && (
-                <p className="mt-1 text-red-500 max-[640px]:text-sm">
-                  {formik.errors.klas}
-                </p>
-              )}
-              <input
-                className="input input-bordered input-info w-full "
-                id="klas"
-                name="klas"
-                type="text"
-                onChange={formik.handleChange}
-                value={formik.values.klas}
-              />
+            {/* ==================== KLAS SATU ==================== */}
+            <div className="grid mb-3 gap-2">
+              <div>
+                <label className="text-l" htmlFor="klas_satu">
+                  Klas
+                </label>
+                {formik.errors.klas_satu && formik.touched.klas_satu && (
+                  <p className="mt-1 text-red-500 max-[640px]:text-sm">
+                    {formik.errors.klas_satu}
+                  </p>
+                )}
+                <input
+                  className="input input-bordered input-info w-full "
+                  id="klas_satu"
+                  name="klas_satu"
+                  type="text"
+                  onChange={formik.handleChange}
+                  value={formik.values.klas_satu}
+                />
+              </div>
             </div>
-          </div>
-          {/* ==================== TANGGAL ==================== */}
-          <div className="grid mb-3 gap-2">
-            <div>
-              <label className="text-l" htmlFor="tanggal">
-                Tanggal
-              </label>
-              {formik.errors.tanggal && formik.touched.tanggal && (
-                <p className="mt-1 text-red-500 max-[640px]:text-sm">
-                  {formik.errors.tanggal}
-                </p>
-              )}
-              <input
-                className="input input-bordered input-info w-full "
-                id="tanggal"
-                name="tanggal"
-                type="date"
-                onChange={formik.handleChange}
-                value={formik.values.tanggal}
-              />
+            {/* ==================== TANGGAL SATU ==================== */}
+            <div className="grid mb-3 gap-2">
+              <div>
+                <label className="text-l" htmlFor="tanggal_satu">
+                  Tanggal
+                </label>
+                {formik.errors.tanggal_satu && formik.touched.tanggal_satu && (
+                  <p className="mt-1 text-red-500 max-[640px]:text-sm">
+                    {formik.errors.tanggal_satu}
+                  </p>
+                )}
+                <input
+                  className="input input-bordered input-info w-full "
+                  id="tanggal_satu"
+                  name="tanggal_satu"
+                  type="date"
+                  onChange={formik.handleChange}
+                  value={formik.values.tanggal_satu}
+                />
+              </div>
+            </div>
+
+            {/* ==================== NOMOR URUT DUA ==================== */}
+            <div className="grid mb-3 gap-2">
+              <div>
+                <label className="text-l" htmlFor="nomorurut_dua">
+                  Nomor Urut
+                </label>
+                {formik.errors.nomorurut_dua &&
+                  formik.touched.nomorurut_dua && (
+                    <p className="mt-1 text-red-500 max-[640px]:text-sm">
+                      {formik.errors.nomorurut_dua}
+                    </p>
+                  )}
+                <input
+                  className="input input-bordered input-info w-full "
+                  id="nomorurut_dua"
+                  name="nomorurut_dua"
+                  type="text"
+                  onChange={formik.handleChange}
+                  value={formik.values.nomorurut_dua}
+                />
+              </div>
+            </div>
+            {/* ==================== KLAS DUA ==================== */}
+            <div className="grid mb-3 gap-2">
+              <div>
+                <label className="text-l" htmlFor="klas_dua">
+                  Klas
+                </label>
+                {formik.errors.klas_dua && formik.touched.klas_dua && (
+                  <p className="mt-1 text-red-500 max-[640px]:text-sm">
+                    {formik.errors.klas_dua}
+                  </p>
+                )}
+                <input
+                  className="input input-bordered input-info w-full "
+                  id="klas_dua"
+                  name="klas_dua"
+                  type="text"
+                  onChange={formik.handleChange}
+                  value={formik.values.klas_dua}
+                />
+              </div>
+            </div>
+            {/* ==================== TANGGAL DUA ==================== */}
+            <div className="grid mb-3 gap-2">
+              <div>
+                <label className="text-l" htmlFor="tanggal_dua">
+                  Tanggal
+                </label>
+                {formik.errors.tanggal_dua && formik.touched.tanggal_dua && (
+                  <p className="mt-1 text-red-500 max-[640px]:text-sm">
+                    {formik.errors.tanggal_dua}
+                  </p>
+                )}
+                <input
+                  className="input input-bordered input-info w-full "
+                  id="tanggal_dua"
+                  name="tanggal_dua"
+                  type="date"
+                  onChange={formik.handleChange}
+                  value={formik.values.tanggal_dua}
+                />
+              </div>
+            </div>
+
+            {/* ==================== NOMOR URUT TIGA ==================== */}
+            <div className="grid mb-3 gap-2">
+              <div>
+                <label className="text-l" htmlFor="nomorurut_tiga">
+                  Nomor Urut
+                </label>
+                {formik.errors.nomorurut_tiga &&
+                  formik.touched.nomorurut_tiga && (
+                    <p className="mt-1 text-red-500 max-[640px]:text-sm">
+                      {formik.errors.nomorurut_tiga}
+                    </p>
+                  )}
+                <input
+                  className="input input-bordered input-info w-full "
+                  id="nomorurut_tiga"
+                  name="nomorurut_tiga"
+                  type="text"
+                  onChange={formik.handleChange}
+                  value={formik.values.nomorurut_tiga}
+                />
+              </div>
+            </div>
+            {/* ==================== KLAS TIGA ==================== */}
+            <div className="grid mb-3 gap-2">
+              <div>
+                <label className="text-l" htmlFor="klas_tiga">
+                  Klas
+                </label>
+                {formik.errors.klas_tiga && formik.touched.klas_tiga && (
+                  <p className="mt-1 text-red-500 max-[640px]:text-sm">
+                    {formik.errors.klas_tiga}
+                  </p>
+                )}
+                <input
+                  className="input input-bordered input-info w-full "
+                  id="klas_tiga"
+                  name="klas_tiga"
+                  type="text"
+                  onChange={formik.handleChange}
+                  value={formik.values.klas_tiga}
+                />
+              </div>
+            </div>
+            {/* ==================== TANGGAL TIGA ==================== */}
+            <div className="grid mb-3 gap-2">
+              <div>
+                <label className="text-l" htmlFor="tanggal_tiga">
+                  Tanggal
+                </label>
+                {formik.errors.tanggal_tiga && formik.touched.tanggal_tiga && (
+                  <p className="mt-1 text-red-500 max-[640px]:text-sm">
+                    {formik.errors.tanggal_tiga}
+                  </p>
+                )}
+                <input
+                  className="input input-bordered input-info w-full "
+                  id="tanggal_tiga"
+                  name="tanggal_tiga"
+                  type="date"
+                  onChange={formik.handleChange}
+                  value={formik.values.tanggal_tiga}
+                />
+              </div>
             </div>
           </div>
 

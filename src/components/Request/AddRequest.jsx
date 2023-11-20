@@ -7,8 +7,8 @@ import { addDataRequest } from "./apiRequest";
 // ============== VALIDATION KOLOM ==============
 const Schema = Yup.object({
   bidang: Yup.string().required(),
-  perihal: Yup.string().required(),
   tanggal: Yup.string().required(),
+  img: Yup.string().required(),
   // nomor_surat: Yup.string().required(),
 });
 
@@ -21,9 +21,9 @@ const AddRequest = ({ handleAddRequest }) => {
     enableReinitialize: true,
     initialValues: {
       bidang: "",
-      perihal: "",
       tanggal: "",
       nomor_surat: "",
+      img: "",
     },
     validationSchema: Schema,
 
@@ -31,8 +31,8 @@ const AddRequest = ({ handleAddRequest }) => {
       const notifyAddData = (message) => toast.success(message);
       const formData = new FormData();
       formData.append("bidang", values.bidang);
-      formData.append("perihal", values.perihal);
       formData.append("tanggal", values.tanggal);
+      formData.append("img", values.img);
       formData.append("nomor_surat", values.nomor_surat);
 
       addDataRequest(
@@ -89,27 +89,7 @@ const AddRequest = ({ handleAddRequest }) => {
               />
             </div>
           </div>
-          {/* ==================== PERIHAL ==================== */}
-          <div className="grid mb-3 gap-2">
-            <div>
-              <label className="text-l" htmlFor="perihal">
-                perihal
-              </label>
-              {formik.errors.perihal && formik.touched.perihal && (
-                <p className="mt-1 text-red-500 max-[640px]:text-sm">
-                  {formik.errors.perihal}
-                </p>
-              )}
-              <input
-                className="input input-bordered input-info w-full "
-                id="perihal"
-                name="perihal"
-                type="text"
-                onChange={formik.handleChange}
-                value={formik.values.perihal}
-              />
-            </div>
-          </div>
+
           {/* ==================== TANGGAL ==================== */}
           <div className="grid mb-3 gap-2">
             <div>
@@ -131,6 +111,34 @@ const AddRequest = ({ handleAddRequest }) => {
               />
             </div>
           </div>
+          {/* ==================== img ==================== */}
+          <div className="grid mb-3 gap-2">
+            <div>
+              <div>
+                <label className="text-l" htmlFor="img">
+                  img
+                </label>
+                {formik.errors.img && formik.touched.img && (
+                  <p className="mt-1 text-red-500 max-[640px]:text-sm">
+                    {formik.errors.img}
+                  </p>
+                )}
+              </div>
+              <div>
+                <input
+                  id="img"
+                  name="img"
+                  accept=".jpg,.jpeg,.png"
+                  type="file"
+                  onChange={(e) =>
+                    formik.setFieldValue("img", e.target.files[0])
+                  }
+                  className="file-input file-input-bordered file-input-info w-full max-w-xs"
+                />
+              </div>
+            </div>
+          </div>
+
           {/* ==================== NOMOR SURAT ==================== */}
           {/* <div className="grid mb-3 gap-2">
             <div>

@@ -7,9 +7,9 @@ import { editDataRequest } from "./apiRequest";
 // ============== VALIDATION KOLOM ==============
 const Schema = Yup.object({
   bidang: Yup.string().required(),
-  perihal: Yup.string().required(),
   tanggal: Yup.string().required(),
   nomor_surat: Yup.string().required(),
+  img: Yup.string().required(),
 });
 
 const EditRequest = ({ handleEditRequest, pickOfRequestEdit }) => {
@@ -21,9 +21,9 @@ const EditRequest = ({ handleEditRequest, pickOfRequestEdit }) => {
     enableReinitialize: true,
     initialValues: {
       bidang: pickOfRequestEdit?.bidang || "",
-      perihal: pickOfRequestEdit?.perihal || "",
       tanggal: pickOfRequestEdit?.tanggal || "",
       nomor_surat: pickOfRequestEdit?.nomor_surat || "",
+      img: pickOfRequestEdit?.img || "",
     },
     validationSchema: Schema,
 
@@ -33,8 +33,10 @@ const EditRequest = ({ handleEditRequest, pickOfRequestEdit }) => {
       formData.append("bidang", values.bidang);
       formData.append("perihal", values.perihal);
       formData.append("tanggal", values.tanggal);
+      formData.append("img", values.img);
       formData.append("nomor_surat", values.nomor_surat);
 
+      console.log(values)
       editDataRequest(
         pickOfRequestEdit,
         formData,
@@ -54,10 +56,12 @@ const EditRequest = ({ handleEditRequest, pickOfRequestEdit }) => {
           data-testid="form"
           className=" bg-white overflow-y-scroll  px-6 py-3 relative min-w-[600px] max-h-screen max-w-3xl rounded-md z-10"
           name="form"
-          onSubmit={formik.handleSubmit}>
+          onSubmit={formik.handleSubmit}
+        >
           <form
             method="dialog"
-            className="modal-box shadow-none right-0  absolute w-full bg-transparent mx-auto">
+            className="modal-box shadow-none right-0  absolute w-full bg-transparent mx-auto"
+          >
             <button className="btn btn-sm btn-circle btn-ghost absolute right-0 top-2">
               ✕
             </button>
@@ -83,27 +87,6 @@ const EditRequest = ({ handleEditRequest, pickOfRequestEdit }) => {
                 type="text"
                 onChange={formik.handleChange}
                 value={formik.values.bidang}
-              />
-            </div>
-          </div>
-          {/* ==================== PERIHAL ==================== */}
-          <div className="grid mb-3 gap-2">
-            <div>
-              <label className="text-l" htmlFor="perihal">
-                perihal
-              </label>
-              {formik.errors.perihal && formik.touched.perihal && (
-                <p className="mt-1 text-red-500 max-[640px]:text-sm">
-                  {formik.errors.perihal}
-                </p>
-              )}
-              <input
-                className="input input-bordered input-info w-full "
-                id="perihal"
-                name="perihal"
-                type="text"
-                onChange={formik.handleChange}
-                value={formik.values.perihal}
               />
             </div>
           </div>
@@ -149,11 +132,39 @@ const EditRequest = ({ handleEditRequest, pickOfRequestEdit }) => {
                 value={formik.values.nomor_surat}
               />
             </div>
+            {/* ==================== IMG ==================== */}
+            <div className="grid mb-3 gap-2">
+              <div>
+                <div>
+                  <label className="text-l" htmlFor="img">
+                    img
+                  </label>
+                  {formik.errors.img && formik.touched.img && (
+                    <p className="mt-1 text-red-500 max-[640px]:text-sm">
+                      {formik.errors.img}
+                    </p>
+                  )}
+                </div>
+                <div>
+                  <input
+                    id="img"
+                    name="img"
+                    accept=".jpg,.jpeg,.png"
+                    type="file"
+                    onChange={(e) =>
+                      formik.setFieldValue("img", e.target.files[0])
+                    }
+                    className="file-input file-input-bordered file-input-info w-full max-w-xs"
+                  />
+                </div>
+              </div>
+            </div>
           </div>
 
           <button
             type="submit"
-            className="bg-green-300 hover:bg-green-200 hover:text-green-100 rounded-md p-2">
+            className="bg-green-300 hover:bg-green-200 hover:text-green-100 rounded-md p-2"
+          >
             Submit
           </button>
         </form>

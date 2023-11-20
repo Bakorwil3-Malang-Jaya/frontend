@@ -66,14 +66,13 @@ const SuratKeluarList = () => {
             {/* ==================== TABEL HEADER ==================== */}
             <thead>
               <tr>
-                <th className="text-center">
-                  {/* <button onClick={handlerBalik}>
-                    <div className="flex items-center">
-                      No <FaArrowsUpDown />
-                    </div>
-                  </button> */}
-                  No Urut
-                </th>
+                <th className="text-center">No Urut</th>
+                <th className="text-center">Klas</th>
+                <th className="text-center">Tanggal</th>
+                <th className="text-center">No Urut</th>
+                <th className="text-center">Klas</th>
+                <th className="text-center">Tanggal</th>
+                <th className="text-center">No Urut</th>
                 <th className="text-center">Klas</th>
                 <th className="text-center">Tanggal</th>
                 <th className="text-center">Aksi</th>
@@ -85,29 +84,66 @@ const SuratKeluarList = () => {
                 .slice(pageVisited, pageVisited + SuratKeluarPerPage)
                 .map((surat) => (
                   <tr key={surat.id}>
+                    <th>
+                      <div
+                        className="line-clamp-2"
+                        dangerouslySetInnerHTML={{
+                          __html: surat.nomorurut_satu,
+                        }}
+                      />
+                    </th>
                     <td>
                       <div
                         className="line-clamp-2"
                         dangerouslySetInnerHTML={{
-                          __html: surat.nomor_urut,
+                          __html: surat.klas_satu,
                         }}
                       />
                     </td>
                     <td>
+                      {surat.tanggal_satu === ""
+                        ? " "
+                        : dayjs(surat.tanggal_satu).format("DD-MM-YYYY")}
+                    </td>
+                    <th>
                       <div
                         className="line-clamp-2"
                         dangerouslySetInnerHTML={{
-                          __html: surat.klas,
+                          __html: surat.nomorurut_dua,
                         }}
                       />
-                    </td>
+                    </th>
                     <td>
                       <div
                         className="line-clamp-2"
                         dangerouslySetInnerHTML={{
-                          __html: dayjs(surat.tanggal).format("DD/MM/YYYY"),
+                          __html: surat.klas_dua,
                         }}
                       />
+                    </td>
+                    <td>
+                      {surat.tanggal_dua === "" ? " " : dayjs(surat.tanggal_dua).format("DD-MM-YYYY")}
+                    </td>
+                    <th>
+                      <div
+                        className="line-clamp-2"
+                        dangerouslySetInnerHTML={{
+                          __html: surat.nomorurut_tiga,
+                        }}
+                      />
+                    </th>
+                    <td>
+                      <div
+                        className="line-clamp-2"
+                        dangerouslySetInnerHTML={{
+                          __html: surat.klas_tiga,
+                        }}
+                      />
+                    </td>
+                    <td>
+                      {
+                        surat.tanggal_tiga === "" ? " " : dayjs(surat.tanggal_tiga).format("DD-MM-YYYY")
+                      }
                     </td>
 
                     <td className="flex gap-2 justify-center items-center">
@@ -127,9 +163,15 @@ const SuratKeluarList = () => {
                         onClick={() => {
                           handleEditSuratKeluar({
                             id: surat.id,
-                            nomor_urut: surat.nomor_urut,
-                            klas: surat.klas,
-                            tanggal: surat.tanggal,
+                            nomorurut_satu: surat.nomorurut_satu,
+                            klas_satu: surat.klas_satu,
+                            tanggal_satu: surat.tanggal_satu,
+                            nomorurut_dua: surat.nomorurut_dua,
+                            klas_dua: surat.klas_dua,
+                            tanggal_dua: surat.tanggal_dua,
+                            nomorurut_tiga: surat.nomorurut_tiga,
+                            klas_tiga: surat.klas_tiga,
+                            tanggal_tiga: surat.tanggal_tiga,
                           });
                           window.my_modal_editSuratKeluar.showModal();
                         }}

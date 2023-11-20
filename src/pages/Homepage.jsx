@@ -18,7 +18,7 @@ const Homepage = () => {
 
   return (
     <>
-      <div className="p-2 flex justify-self items-center h-screen">
+      <div className="p-2 flex justify-self items-center mt-28">
         <img src="logo.png" alt="" className="w-[25%] ml-4" />
         <div className="ml-4">
           <p className="text-3xl font-bold">
